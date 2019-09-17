@@ -1,0 +1,186 @@
+title: Jones Home
+
+resources:
+  - url: /local/content-card-example.js
+    type: js
+views:
+  - title: Basics
+    id: vw1
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: picture-entity
+            entity: device_tracker.google_maps_104209047416005478900
+            name: " "
+            image: /local/jj-bw.png
+            state_image:
+              "home": /local/jj.png
+          - type: picture-entity
+            entity: device_tracker.google_maps_105615243232119679687
+            name: " "
+            image: /local/pj-bw.png
+            state_image:
+              "home": /local/pj.png
+      - type: entities
+        entities:
+          - sensor.gavins_alarm
+          - type: call-service
+            icon: mdi:eye
+            name: Alarm
+            action_name: 'ON'
+            service: script.turn_on
+            service_data:
+              entity_id: script.gavin_on
+          - type: call-service
+            icon: mdi:eye-off
+            name: Alarm
+            action_name: 'OFF'
+            service: script.turn_on
+            service_data:
+              entity_id: script.gavin_off
+          - entity: binary_sensor.motion_sensor
+            name: Boys Motion
+            secondary_info: last-changed
+          - entity: binary_sensor.motion_detector
+            name: Office Motion
+            secondary_info: last-changed
+      - type: glance
+        column_width: 25%
+        show_state: false
+        entities:
+#          - entity: input_boolean.good_morning
+#            tap_action:
+#              action: toggle
+#          - entity: input_boolean.good_night
+#            tap_action:
+#              action: toggle
+          - entity: light.aeotec_zw098_led_01_level
+            name: Jennifer
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+          - entity: switch.whitenoise
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+          - entity: sensor.fridge
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.isy_fridgeoff
+          - entity: cover.garage_door
+            tap_action:
+              action: toggle
+      - type: glance
+        column_width: 25%
+        show_state: false
+        entities:
+          - entity: switch.office_light
+            tap_action:
+              action: toggle
+          - entity: switch.master
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+          - entity: light.lobby
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+          - entity: light.led_strip
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+      - type: glance
+        column_width: 25%
+        show_state: false
+        entities:
+          - entity: light.frontporch
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+          - entity: switch.garageexterior
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+          - entity: switch.mud_room
+            tap_action:
+              action: toggle
+            hold_action: 
+              action: more-info
+          - entity: switch.living_room
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+
+  - title: Climate
+    id: vw2
+    theme: dark-mode
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: thermostat
+            name: Thermostat
+            entity: climate.thermostat
+
+#  - title: Cameras
+#    id: vw3
+#    theme: dark-mode
+#    cards:
+#      - type: picture-glance
+#        show_state: true
+#        title: Gavin's Room
+#        entities:
+#          - sensor.gavins_alarm
+#          - light.bedgavin
+#        camera_image: camera.living_room
+  - title: Sensor
+    id: vw5
+    theme: dark-mode
+    cards:
+      - type: glance
+        entities:
+          - entity: binary_sensor.vibration_detector
+            name: Vibration
+            secondary_info: last-changed
+          - entity: sensor.multisensor_luminance
+            name: Illumination
+          - entity: sensor.multisensor_relative_humidity
+            name: Humidity
+          - entity: sensor.multisensor_temperature
+            name: Temperature
+  - title: Other
+    id: vw4
+    theme: dark-mode
+    cards:
+      - type: entities
+        entities:
+          - input_boolean.good_morning
+          - input_boolean.good_night
+          - input_boolean.isy_fridgeoff
+      - type: entities
+        entities:
+          - input_boolean.guest
+          - input_boolean.school
+          - device_tracker.patrick
+          - device_tracker.jennifer
+          - group.patrick
+          - group.jennifer
+      - type: entities
+        entities:
+          - input_boolean.led_blue_40
+          - input_boolean.led_blue_100
+          - input_boolean.led_purple
+          - input_boolean.led_red_40
+          - input_boolean.led_red_30
+          - input_boolean.led_red_20
+          - input_boolean.led_red_10
+          - input_boolean.led_off

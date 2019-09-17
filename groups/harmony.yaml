@@ -1,0 +1,9 @@
+Harmony:
+  control: hidden
+  entities:
+    - switch.watch_xfinity
+    - switch.watch_chromecast
+    - switch.play_xbox
+    - switch.watch_bluray
+    - switch.play_wii
+

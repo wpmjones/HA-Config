@@ -1,0 +1,5 @@
+Home Modes:
+  control: hidden
+  entities:
+    - input_boolean.guest
+    - input_boolean.school

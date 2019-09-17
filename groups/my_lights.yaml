@@ -1,0 +1,10 @@
+My_Lights:
+  entities:
+    - light.frontporch
+    - switch.garageexterior
+    - switch.master
+    - switch.living_room
+    - switch.mud_room
+    - switch.office_light
+    - light.lobby
+    - light.aeotec_zw098_led_01_level

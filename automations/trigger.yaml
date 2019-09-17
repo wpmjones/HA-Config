@@ -1,0 +1,59 @@
+- alias: Fridge Off
+  initial_state: true
+  trigger:
+    - entity_id: input_boolean.isy_fridgeoff
+      platform: state
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest
+      state: 'off'
+  action:
+    - service: rest_command.isy_fridgeoff
+    - entity_id: input_boolean.isy_fridgeoff
+      service: input_boolean.turn_off
+- alias: Guest Mode On
+  trigger:
+  - platform: state
+    entity_id: input_boolean.guest
+    to: 'on'
+    from: 'off'
+  action:
+    - service: rest_command.guest_on
+    - service: script.speech_engine
+      data_template:
+        value1: 'Guest mode enabled'
+- alias: Guest Mode Off
+  trigger:
+  - platform: state
+    entity_id: input_boolean.guest
+    to: 'off'
+    from: 'on'
+  action:
+    - service: rest_command.guest_off
+    - service: script.speech_engine
+      data_template:
+        value1: 'Guest mode disabled'
+- alias: School Mode On
+  trigger:
+  - platform: state
+    entity_id: input_boolean.school
+    to: 'on'
+    from: 'off'
+  action:
+    - service: rest_command.school_on
+    - service: script.speech_engine
+      data_template:
+        value1: 'School mode enabled'
+- alias: School Mode Off
+  trigger:
+  - platform: state
+    entity_id: input_boolean.school
+    to: 'off'
+    from: 'on'
+  action:
+    - service: rest_command.school_off
+    - service: script.speech_engine
+      data_template:
+        value1: 'School mode disabled'

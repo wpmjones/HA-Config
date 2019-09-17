@@ -1,0 +1,43 @@
+# LED Strip
+led_red_40:
+  name: LED Red 40%
+  initial: off
+  icon: mdi:led-off
+
+led_red_30:
+  name: LED Red 30%
+  initial: off
+  icon: mdi:led-off
+
+led_red_20:
+  name: LED Red 20%
+  initial: off
+  icon: mdi:led-off
+
+led_red_10:
+  name: LED Red 10%
+  initial: off
+  icon: mdi:led-off
+
+led_blue_100:
+  name: LED Blue 100%
+  initial: off
+  icon: mdi:led-off
+
+led_blue_40:
+  name: LED Blue 40%
+  initial: off
+  icon: mdi:led-off
+
+led_purple:
+  name: LED Purple
+  initial: off
+  icon: mdi:led-off
+
+led_off:
+  name: LED Off
+  initial: off
+  icon: mdi:led-off
+
+
+

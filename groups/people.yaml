@@ -1,0 +1,20 @@
+Family:
+  entities:
+    - device_tracker.jennifer
+    - device_tracker.patrick
+
+tracker:
+  entities:
+    - device_tracker.google_maps_105615243232119679687
+    - device_tracker.google_maps_104209047416005478900
+
+
+jennifer:
+  entities:
+    - device_tracker.jennifer
+    - device_tracker.google_maps_104209047416005478900
+
+patrick:
+  entities:
+    - device_tracker.google_maps_105615243232119679687
+    - device_tracker.patrick

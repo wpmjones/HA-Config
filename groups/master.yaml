@@ -1,0 +1,6 @@
+Master:
+  control: hidden
+  entities:
+    - light.aeotec_zw098_led_01_level
+    - switch.whitenoise
+    - switch.bathmain

@@ -1,0 +1,47 @@
+- alias: Away Mode
+  id: away1
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: 'home'
+    to: 'not_home'
+    for:
+      minutes: 10
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest
+      state: 'off'
+  action:
+    - service: script.lights_off
+- alias: Close Garage Door
+  id: away2
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: 'home'
+    to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
+    - condition: state
+      entity_id: input_boolean.guest
+      state: 'off'
+  action:
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+- alias: Foyer Light On
+  id: away3
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: 'home'
+    to: 'not_home'
+  condition:
+    - condition: numeric_state
+      entity_id: sun.sun
+      value_template: '{{ state.attributes.elevation }}'
+      below: 3.5
+  action:
+    - service: light.turn_on
+      entity_id: light.lobby

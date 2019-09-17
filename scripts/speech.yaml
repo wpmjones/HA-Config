@@ -1,0 +1,160 @@
+speech_engine:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.guest
+      state: 'off'
+#    - condition: state
+#      entity_id: group.family
+#      state: 'home'
+    - service: script.speech_processing
+      data_template:
+        media_player: >-
+          {% if media_player | length == 0 %}
+            {% set media_player = 'media_player.all_devices' %}
+          {% endif %}
+
+          {% if media_player is not string and media_player is sequence %}
+            {% set media_player = media_player|join(', ') %}
+          {% endif %}
+
+          {% if is_state('switch.whitenoise', 'on') %}
+            {% set media_player = 'media_player.kitchen_speaker' %}
+          {% endif %}
+
+          {{ media_player }}
+
+        speech_message: >-
+          {%- macro snack_time() -%}
+            {{ [
+              'It is snack time.  Whose hungry?',
+              'Do you know what time it is? It is time for a snack.',
+              'If you will pause the TV, I will tell Mommy that it is time for a snack.'
+            ]|random }}
+          {%- endmacro -%}
+
+          {% macro bus_time() -%}
+            {{ [
+              'At the tone, it will be time to pick up Gavin.  Beep!',
+              'Its 5:30.  Time to go meet the bus.',
+              'Oh!  Look at the time!  Put your shoes on and chase that bus!'
+            ]|random }}
+          {% endmacro -%}
+
+          {%- macro gavin_alert() -%}
+            {{ [
+              'Gavins light is on.',
+              'Your going to want to check on Gavin.',
+              'Something is about to go bump in the night and I think it is Gavin'
+            ]|random }}
+          {%- endmacro -%}
+
+          {%- macro bed_time() -%}
+            {{ [
+              'It is bed time!  Does anyone want to check their weight before going to bed?',
+              'Time for pajama wearing, teeth brushing, song singing, and prayer praying.',
+              'Go to bed you crazy kids!',
+              'Does anyone here sing lullabies? Because it is that time.'
+            ]|random }}
+          {%- endmacro -%}
+
+          {%- macro arm_fridge() -%}
+            {{ [
+              'Refrigerator armed. If you open that cool box, its gonna explode!',
+              'The fridge has been rearmed.',
+              'Five. Four. Three. Two. One. Armed.',
+              'Roses are red. Violets are blue. The fridge is armed and daddy wants a Corvette!',
+              'Elvis has left the building.  But he armed the fridge before he left.',
+              'Sure as it rains in Florida, the fridge is now armed.',
+              'Hope you are all done in the fridge cause its back to beeping again.',
+              'Do not try and use the fridge right now. Yule be sorry.',
+              'The fridge is now locked up tight. Stay safe G man.',
+              'Its that time again. Beep beep.',
+              'Big fish. Little fish. Refrigerator armed.',
+              'Oh give me a home where the fridge is now armed.',
+              'Stay out of the fridge. Unless you want to hear the beep.'
+            ]|random }}
+          {%- endmacro -%}
+
+          {%- macro trash_days() -%}
+            {% if now().strftime('%a') == 'Sun' or now().strftime('%a') == 'Wed' %}
+              Tomorrow is {{(as_timestamp(now())+ (86400)) | timestamp_custom("%A",true)}} that means its trash day!
+            {% endif %}
+          {%- endmacro -%}
+
+          {%- macro garage_check() -%}
+            {% if is_state('cover.garage_door', 'open') -%}
+              The garage is open. You might want to close it.
+            {% endif -%}
+          {%- endmacro -%}
+
+          {%- macro jenn_meds() -%}
+            {{ [
+              'It is ' + now().strftime('%-I:%M') + '. Have you taken your meds?',
+              'Time to take your night time medicine.',
+              'Have you taken your evening medicine yet?',
+              'You have pills to take.  Tell Patrick to get up and help!'
+            ]|random }}
+          {%- endmacro -%}
+
+          {# *** Start the speech routines *** #}
+
+          {% if call_no_announcement != 1 %}
+            {% if now().strftime('%H')|int < 12 and now().strftime('%H')|int > 6 %}
+              Good morning.
+            {% elif now().strftime('%H')|int >= 12 and now().strftime('%H')|int < 17 %}
+              Good afternoon.
+            {% else %}
+              Good evening.
+            {% endif %}
+          {% endif %}
+
+          {% if call_snack_time == 1 %}
+            {{ snack_time() }}
+          {% endif %}
+
+          {% if call_bus_time == 1 %}
+            {{ bus_time() }}
+          {% endif %}
+
+          {% if call_gavin_alert == 1 %}
+            {{ gavin_alert() }}
+          {% endif %}
+
+          {% if call_bed_time == 1 %}
+            {{ bed_time() }}
+          {% endif %}
+
+          {% if call_arm_fridge == 1 %}
+            {{ arm_fridge() }}
+          {% endif %}
+
+          {% if call_trash_days == 1 %}
+            {{ trash_days() }}
+          {% endif %}
+
+          {% if call_garage_check == 1 %}
+            {{ garage_check() }}
+          {% endif %}
+
+          {% if call_jenn_meds == 1 %}
+            {{ jenn_meds() }}
+          {% endif %}
+
+          {{ personarriving }}
+
+          {% if value1 is not none %}
+            {{ value1 }}
+          {% endif %}
+
+speech_processing:
+  sequence:
+    - condition: time
+      after: '08:00:00'
+      before: '00:00:00'
+    - service: tts.google_say
+      data_template:
+        entity_id: >
+          {{ media_player }}
+        message: >-
+          {{ speech_message }}
+        cache: true

@@ -1,0 +1,60 @@
+- alias: AC Early Morning
+  id: HVAC1
+  trigger:
+    - platform: time
+      at: '05:00:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.guest
+    state: 'off'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.thermostat
+        temperature: 65
+        hvac_mode: cool
+- alias: AC Daytime
+  id: HVAC2
+  trigger:
+    - platform: time
+      at: '08:00:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.guest
+    state: 'off'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.thermostat
+        temperature: 73
+        hvac_mode: cool
+- alias: AC Afternoon
+  id: HVAC3
+  trigger:
+    - platform: time
+      at: '14:00:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.guest
+    state: 'off'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.thermostat
+        temperature: 69
+        hvac_mode: cool
+- alias: AC Evening
+  id: HVAC4
+  trigger:
+    - platform: time
+      at: '22:00:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.guest
+    state: 'off'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.thermostat
+        temperature: 67
+        hvac_mode: cool

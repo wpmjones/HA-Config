@@ -1,0 +1,41 @@
+- id: webhook1
+  alias: Rearm Fridge
+  trigger:
+    platform: webhook
+    webhook_id: '000D'
+  action:
+    - service: script.speech_engine
+      data:
+        call_arm_fridge: 1
+- id: webhook2
+  alias: Motion Alarm Light On
+  trigger:
+    platform: webhook
+    webhook_id: '098'
+  action:
+    service: light.turn_on
+    entity_id: light.aeotec_zw098_led_01_level
+- id: webhook3
+  alias: Motion Alarm Light Off
+  trigger:
+    platform: webhook
+    webhook_id: '099'
+  action:
+    service: light.turn_off
+    entity_id: light.aeotec_zw098_led_01_level
+- id: webhook4
+  alias: Good Night Remote
+  trigger:
+    platform: webhook
+    webhook_id: '100'
+  action:
+    service: script.lights_off
+- id: webhook5
+  alias: Gavin Light On
+  trigger:
+    platform: webhook
+    webhook_id: '101'
+  action:
+    - service: script.speech_engine
+      data:
+        call_gavin_alert: 1

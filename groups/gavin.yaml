@@ -1,0 +1,7 @@
+Gavin:
+  entities:
+    - sensor.gavins_alarm
+    - script.gavin_on
+    - script.gavin_off
+  control: hidden
+

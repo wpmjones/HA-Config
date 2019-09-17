@@ -1,0 +1,31 @@
+temp_up:
+  alias: Downstairs Up
+  sequence:
+    - service: rest_command.downstairs_up
+temp_down:
+  alias: Downstairs Down
+  sequence:
+    - service: rest_command.downstairs_down
+
+temp2_up:
+  alias: Upstairs Up
+  sequence:
+    - service: climate.set_temperature
+      data_template:
+        entity_id: climate.upstairs_thermostat_cooling
+        temperature: "{{ states.climate.upstairs_thermostat_cooling.attributes.temperature | float + 1 }}"
+    - service: climate.set_temperature
+      data_template:
+        entity_id: climate.upstairs_thermostat_heating
+        temperature: "{{ states.climate.upstairs_thermostat_heating.attributes.temperature | float + 1 }}"
+temp2_down:
+  alias: Upstairs Down
+  sequence:
+    - service: climate.set_temperature
+      data_template:
+        entity_id: climate.upstairs_thermostat_cooling
+        temperature: "{{ states.climate.upstairs_thermostat_cooling.attributes.temperature | float - 1 }}"
+    - service: climate.set_temperature
+      data_template:
+        entity_id: climate.upstairs_thermostat_heating
+        temperature: "{{ states.climate.upstairs_thermostat_heating.attributes.temperature | float - 1 }}"

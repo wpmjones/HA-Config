@@ -1,0 +1,19 @@
+- name: morning
+  entities:
+    light.aeotec_zw098_led_01_level:
+      state: 'on'
+      rgb_color: [100,199,192]
+      brightness: 75
+- name: evening
+  entities:
+    light.aeotec_zw098_led_01_level:
+      state: 'on'
+      rgb_color: [204,180,180]
+      brightness: 75
+- name: night
+  entities:
+    light.aeotec_zw098_led_01_level:
+      state: 'on'
+      rgb_color: [204,0,0]
+      brightness: 40
+      

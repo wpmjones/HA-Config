@@ -1,0 +1,12 @@
+lights_off:
+  sequence:
+    - service: homeassistant.turn_off
+      entity_id:
+        - group.my_lights
+
+bedroom_on:
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id:
+        - light.bedjenn
+        - light.bedpatrick

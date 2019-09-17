@@ -1,0 +1,367 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  # name: Jones Home
+  # Location required to calculate the time the sun rises and sets
+  # latitude: 27.871730
+  # longitude: -82.710720
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  # elevation: 4
+  # metric for Metric, imperial for Imperial
+  # unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # time_zone: America/New_York
+  # Customization file
+  customize: !include customize.yaml
+  # Customize entities matching a pattern
+  customize_glob:
+    "light.remotel*":
+      hidden: true
+    "binary_sensor.motion*":
+      hidden: true
+    "binary_sensor.fridge*":
+      hidden: true
+    "autom*":
+      hidden: true
+    "light.therm*":
+      hidden: true
+    "switch.buzz*":
+      hidden: true
+    "media_player*":
+      hidden: true
+    "sensor.tc_*":
+      hidden: true
+
+# Add logging levels - debug is the default
+logger:
+  default: warn
+
+# Enables the frontend
+frontend:
+
+# Enables Lovelace
+lovelace:
+  mode: yaml
+
+# Enables configuration UI
+config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
+  # base_url: ha.mayodev.duckdns.org:8123
+  api_password: !secret http_password
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Set up Emulated Philips Hue Bridge
+emulated_hue:
+  expose_by_default: true
+
+# Amazon Echo Integration
+alexa:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Logitech Circle component
+#logi_circle:
+#  client_id: !secret logi_client_id
+#  client_secret: !secret logi_client_secret
+#  api_key: !secret logi_api
+#  redirect_uri: !secret logi_uri
+
+ifttt:
+  key: !secret ifttt
+
+tuya:
+  username: !secret tuya_u
+  password: !secret tuya_p
+  country_code: 1
+  platform: smart_life
+
+# Universal Devices ISY994 Configuration
+isy994:
+  host: https://192.168.1.15:443
+  username: !secret isy_username
+  password: !secret isy_password
+
+# Rest Commands
+rest_command:
+  isy_fridgeoff:
+    url: 'http://192.168.1.15:81/rest/programs/000D/runThen'
+    username: !secret isy_username
+    password: !secret isy_password
+  downstairs_up:
+    url: 'http://192.168.1.15:81/rest/nodes/14%2029%20E4%201/cmd/BRT'
+    username: !secret isy_username
+    password: !secret isy_password
+  downstairs_down:
+    url: 'http://192.168.1.15:81/rest/nodes/14%2029%20E4%201/cmd/DIM'
+    username: !secret isy_username
+    password: !secret isy_password
+  gavin_on:
+    url: 'http://192.168.1.15:81/rest/programs/000C/enable'
+    username: !secret isy_username
+    password: !secret isy_password
+  gavin_off:
+    url: 'http://192.168.1.15:81/rest/programs/000C/disable'
+    username: !secret isy_username
+    password: !secret isy_password
+  guest_on:
+    url: 'http://192.168.1.15:81/rest/vars/set/2/3/1'
+    username: !secret isy_username
+    password: !secret isy_password
+  guest_off:
+    url: 'http://192.168.1.15:81/rest/vars/set/2/3/0'
+    username: !secret isy_username
+    password: !secret isy_password
+  school_on:
+    url: 'http://192.168.1.15:81/rest/vars/set/2/4/1'
+    username: !secret isy_username
+    password: !secret isy_password
+  school_off:
+    url: 'http://192.168.1.15:81/rest/vars/set/2/4/0'
+    username: !secret isy_username
+    password: !secret isy_password
+
+# Enables a map showing the location of tracked devices
+map:
+
+zone:
+  - name: Home
+    latitude: 27.808933
+    longitude: -82.746746
+  - name: St. Pete Corps
+    latitude: 27.780251
+    longitude: -82.684842
+  - name: St. Pete Area Command
+    latitude: 27.756409
+    longitude: -82.637802
+  - name: St. Pete ARC
+    latitude: 27.825432
+    longitude: -82.727694
+  - name: 74th St Elementary
+    latitude: 27.807706
+    longitude: -82.739408
+  - name: Thurgood Marshall
+    latitude: 27.749264
+    longitude: -82.686692
+
+# Setup device trackers
+device_tracker:
+  - platform: google_maps
+    username: !secret maps_username
+    max_gps_accuracy: 200
+  - platform: nmap_tracker
+    hosts: 192.168.1.0/24
+    home_interval: 10
+    exclude:
+      - 192.168.1.92
+      - 192.168.1.120
+      - 192.168.1.15
+
+# Enable Z-wave
+zwave:
+  usb_path: /dev/ttyACM0
+
+# Track the sun
+sun:
+
+# Covers
+cover:
+  - platform: myq
+    username: !secret myq_u
+    password: !secret myq_p
+    type: chamberlain
+
+# Climate
+climate:
+  - platform: honeywell
+    username: !secret honey_u
+    password: !secret honey_p
+    region: us
+
+# Sensors
+sensor:
+  # Weather prediction
+  - platform: yr
+  # Command line sensors for ISY
+  # - platform: command_line
+  #   name: Downstairs Temp
+  #   command: '/usr/bin/curl --user admin:admin "http://192.168.1.15:81/rest/nodes/14%2029%20E4%201/ST" 2>&1 | grep -oPm1 "(?<=formatted=\")[0-9]+"'
+  #   unit_of_measurement: °F
+  #   scan_interval: 60
+  # - platform: command_line
+  #   name: Downstairs Heat
+  #   command: '/usr/bin/curl --user admin:admin "http://192.168.1.15:81/rest/nodes/14%2029%20E4%201/CLISPH" 2>&1 | grep -oPm1 "(?<=formatted=\")[0-9]+"'
+  #   unit_of_measurement: °F
+  #   scan_interval: 15
+  # - platform: command_line
+  #   name: Downstairs Cool
+  #   command: '/usr/bin/curl --user admin:admin "http://192.168.1.15:81/rest/nodes/14%2029%20E4%201/CLISPC" 2>&1 | grep -oPm1 "(?<=formatted=\")[0-9]+"'
+  #   unit_of_measurement: °F
+  #   scan_interval: 15
+  - platform: command_line
+    name: Alarm
+    command: '/usr/bin/curl --user admin:admin "http://192.168.1.15:81/rest/programs/000C" 2>&1 | grep -oPm1 "(?<=enabled=\")[true|false]+"'
+    scan_interval: 5
+  # - platform: command_line
+  #   name: garage
+  #   command: '/usr/bin/curl --user admin:admin "http://192.168.1.15:81/rest/nodes/32%2051%2036%201/ST" 2>&1 | grep -oPm1 "(?<=formatted=\")[On|Off]+"'
+  #   scan_interval: 5
+  - platform: command_line
+    name: Fridge Program
+    command: '/usr/bin/curl --user admin:admin "http://192.168.1.15:81/rest/vars/get/2/5" 2>&1 | grep -oPm1 "(?<=<val>)[^<]+"'
+    scan_interval: 5
+  - platform: template
+    sensors:
+  #     garage_door:
+  #       friendly_name: 'Garage'
+  #       value_template: >-
+  #         {% if is_state('sensor.garage', 'On') %}
+  #           Open
+  #         {% else %}
+  #           Closed
+  #         {% endif %}
+  #       icon_template: >-
+  #         {% if is_state('sensor.garage', 'On') %}
+  #           mdi:garage-open
+  #         {% else %}
+  #           mdi:garage
+  #         {% endif %}
+      fridge:
+        friendly_name: 'Fridge Alarm'
+        value_template: >-
+          {% if is_state('sensor.fridge_program', '0') %}
+            Armed
+          {% else %}
+            Disarmed
+          {% endif %}
+        icon_template: >-
+          {% if is_state('sensor.fridge_program', '0') %}
+            mdi:fridge
+          {% else %}
+            mdi:fridge-outline
+          {% endif %}          
+      gavins_alarm:
+        friendly_name: 'Gavins Alarm'
+        value_template: >
+          {% if is_state("sensor.alarm", "false") %}
+            Off
+          {% else %}
+            On
+          {% endif %}
+        icon_template: >
+          {% if is_state("sensor.alarm", "false") %}
+            mdi:alarm-off
+          {% else %}
+            mdi:alarm
+          {% endif %}
+
+binary_sensor:
+  - platform: template
+    sensors:
+      motion_detector:
+        device_class: motion
+        friendly_name: "Motion"
+        value_template: "{{  is_state('sensor.multisensor_burglar', '8') }}"
+      vibration_detector:
+        device_class: vibration
+        friendly_name: "Vibration"
+        value_template: "{{  is_state('sensor.multisensor_burglar', '3') }}"
+
+# Push notifications for Jennifers Phone
+ios:
+
+# Logitech Harmony Hub
+remote:
+  - platform: harmony
+    name: Harmony Hub
+    host: 192.168.1.133
+    activity: 20409204
+
+# Home alarm system
+konnected:
+  access_token: jonesFamily2003
+  api_host: http://192.168.1.175:8123
+  devices:
+    - id: 807d3a663600
+      binary_sensors:
+        - zone: 1
+          type: window
+          name: 'Kitchen Window'
+        - zone: 2
+          type: window
+          name: 'Family Dining Room Window'
+        - zone: 3
+          type: window
+          name: 'Master Bedroom Window'
+        - zone: 4
+          type: window
+          name: 'Guest Room Window'
+        - zone: 5
+          type: window
+          name: 'Colin Window'
+        - zone: 6
+          type: window
+          name: 'Gavin Window'
+    - id: 84f3eb18561a
+      binary_sensors:
+        - zone: 3
+          type: door
+          name: 'Garage Entry Door'
+        - zone: 4
+          type: door
+          name: 'Back Door'
+        - zone: 5
+          type: door
+          name: 'Front Door'
+        - zone: 6
+          type: door
+          name: 'Garage Side Door'
+
+# Alarm Control Panel for Konnected
+alarm_control_panel:
+  - platform: manual
+    name: Home Alarm
+    code: !secret alarm_code
+    pending_time: 30
+    delay_time: 20
+    armed_home:
+      pending_time: 0
+      delay_time: 0
+
+# Text to speech
+tts:
+  - platform: google_translate
+    service_name: google_say
+
+# Notification platforms
+notify:
+  - name: slack
+    platform: slack
+    api_key: !secret slack_token
+    default_channel: '#home-assistant'
+    username: 'Home Assistant'
+  - name: pushbullet
+    platform: pushbullet
+    api_key: !secret pushbullet_key
+
+group: !include_dir_merge_named groups
+input_boolean: !include_dir_merge_named input_booleans
+automation: !include_dir_merge_list automations
+scene: !include_dir_merge_list scene
+script: !include_dir_merge_named scripts
+switch: !include switch.yaml

@@ -1,0 +1,40 @@
+- alias: 'Welcome Home'
+  id: arrive1
+  trigger:
+    - platform: state
+      entity_id:
+        - group.jennifer
+        - group.patrick
+      from: 'away'
+      to: 'home'
+      for: '00:04:00'
+  condition:
+    - condition: time
+      after: '08:00:00'
+      before: '22:30:00'
+    - condition: state
+      entity_id: switch.whitenoise
+      state: 'off'
+  action:
+    - service: script.speech_engine
+      data_template:
+        personarriving: >
+          {% set person = trigger.entity_id.split('.')[1]|replace('_',' ') %}
+          {%- macro greeting(person) -%}
+          {{ [
+          "Welcome back home " ~ person,
+          "Guess who is home?" ~ person ~ " is!",
+          person ~ " is now in the house.",
+          "Welcome Home " ~ person ~ ".  We have missed you. Or at least Miko did.",
+          "My name's Alexa and I'm here to say. " ~ person ~ " is back and they're here to stay!",
+          "Our home is now complete, Rest your head and relax your feet! Welcome Back " ~ person,
+          "Life is like a song, you’re back where you belong. Welcome home " ~ person,
+          "Hey there " ~ person ~ ". Welcome Home!",
+          "Knock Knock. Who is There? " ~ person ~ " is!",
+          person ~ "! It's good to have you back!",
+          "I love having family around. Good to see you again " ~ person
+          ] | random }}
+          {%- endmacro -%}
+          {{ greeting(person) }}
+        call_garage_check: 1
+        call_trash_days: 1

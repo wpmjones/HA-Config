@@ -1,0 +1,7 @@
+Triggers:
+  control: hidden
+  entities:
+    - input_boolean.good_morning
+    - input_boolean.good_night
+    - input_boolean.isy_fridgeoff
+    - input_boolean.garage

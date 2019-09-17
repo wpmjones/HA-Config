@@ -1,0 +1,333 @@
+# Office Light
+- alias: Office Lights On
+  id: lights3
+  trigger:
+    platform: state
+    entity_id: sensor.multisensor_burglar
+    to: '8'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.office_light
+- alias: Office Lights Off
+  id: lights4
+  trigger:
+    platform: state
+    entity_id: sensor.multisensor_burglar
+    to: '0'
+    from: '8'
+    for: '00:10:00'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.office_light
+
+# Mud Room Light
+- id: mud_room_on
+  alias: Mud Room On
+  trigger:
+    platform: state
+    entity_id: sensor.open_close_1, sensor.open_close_2
+    to: '22'
+    from: '23'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.mud_room
+- id: mud_room_off
+  alias: Mud Room Off
+  trigger:
+    platform: state
+    entity_id: sensor.open_close_1, sensor.open_close_2
+  condition:
+    - condition: state
+      entity_id: sensor.open_close_1
+      state: '23'
+    - condition: state
+      entity_id: sensor.open_close_2
+      state: '23'
+  action:
+    - delay: '00:00:10'
+    - service: switch.turn_off
+      entity_id: switch.mud_room
+  
+
+# LED Strip
+- id: LED_on_morning
+  alias: LED On Morning
+  trigger:
+    event: sunrise
+    platform: sun
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 255
+        rgb_color:
+        - 0
+        - 0
+        - 255
+- id: LED_on_9
+  alias: LED On 9am
+  trigger:
+    platform: time
+    at: '09:00:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 255
+        rgb_color:
+        - 100
+        - 0
+        - 255
+- id: LED_on_11
+  alias: LED On 11am
+  trigger:
+    platform: time
+    at: '11:00:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 255
+        rgb_color:
+        - 150
+        - 0
+        - 255
+- id: LED_on_13
+  alias: LED On 1pm
+  trigger:
+    platform: time
+    at: '13:00:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 255
+        rgb_color:
+        - 200
+        - 0
+        - 255
+- id: LED_on_15
+  alias: LED On 3pm
+  trigger:
+    platform: time
+    at: '15:00:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 255
+        rgb_color:
+        - 255
+        - 0
+        - 255
+- id: LED_on_17
+  alias: LED On 5pm
+  trigger:
+    platform: time
+    at: '17:00:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 255
+        rgb_color:
+        - 255
+        - 0
+        - 200
+- id: LED_on_19
+  alias: LED On 7pm
+  trigger:
+    platform: time
+    at: '19:00:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 200
+        rgb_color:
+        - 255
+        - 0
+        - 150
+- id: LED_on_21
+  alias: LED On 9pm
+  trigger:
+    platform: time
+    at: '21:00:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 150
+        rgb_color:
+        - 255
+        - 0
+        - 100
+- id: LED_on_22
+  alias: LED On 10pm
+  trigger:
+    platform: time
+    at: '22:00:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 75
+        rgb_color:
+        - 255
+        - 0
+        - 0
+- id: LED_off
+  alias: LED Off 11pm
+  trigger:
+    platform: time
+    at: '23:00:00'
+  action:
+    - service: light.turn_off
+      entity_id: light.led_strip
+
+- alias: LED Red 40
+  id: red40
+  trigger:
+    - platform: state
+      entity_id: input_boolean.led_red_40
+      to: 'on'
+      from: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 102
+        rgb_color:
+        - 210
+        - 0
+        - 0
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.led_red_40
+
+- alias: LED Red 30
+  id: red30
+  trigger:
+    - platform: state
+      entity_id: input_boolean.led_red_30
+      to: 'on'
+      from: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 76
+        rgb_color:
+        - 210
+        - 0
+        - 0
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.led_red_30
+
+
+- alias: LED Red 20
+  id: red20
+  trigger:
+    - platform: state
+      entity_id: input_boolean.led_red_20
+      to: 'on'
+      from: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 51
+        rgb_color:
+        - 210
+        - 0
+        - 0
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.led_red_20
+
+- alias: LED Red 10
+  id: red10
+  trigger:
+    - platform: state
+      entity_id: input_boolean.led_red_10
+      to: 'on'
+      from: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 25
+        rgb_color:
+        - 210
+        - 0
+        - 0
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.led_red_10
+
+- alias: LED Blue 100
+  id: blue100
+  trigger:
+    - platform: state
+      entity_id: input_boolean.led_blue_100
+      to: 'on'
+      from: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 255
+        rgb_color:
+        - 0
+        - 0
+        - 255
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.led_blue_100
+
+- alias: LED Blue 40
+  id: blue40
+  trigger:
+    - platform: state
+      entity_id: input_boolean.led_blue_40
+      to: 'on'
+      from: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 102
+        rgb_color:
+        - 0
+        - 0
+        - 255
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.led_blue_40
+
+- alias: LED Purple
+  id: purple
+  trigger:
+    - platform: state
+      entity_id: input_boolean.led_purple
+      to: 'on'
+      from: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.led_strip
+      data:
+        brightness: 76
+        rgb_color:
+        - 181
+        - 181
+        - 0
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.led_purple
+
+- alias: LED Off
+  id: led_off
+  trigger:
+    - platform: state
+      entity_id: input_boolean.led_off
+      to: 'on'
+      from: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: light.led_strip
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.led_off

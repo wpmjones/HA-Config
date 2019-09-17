@@ -1,0 +1,8 @@
+gavin_on:
+  alias: Alarm On
+  sequence:
+    - service: rest_command.gavin_on
+gavin_off:
+  alias: Alarm Off
+  sequence:
+    - service: rest_command.gavin_off

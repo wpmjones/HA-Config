@@ -1,0 +1,7 @@
+Garage:
+  entities:
+    - switch.garage_relay
+    - switch.garage_sensoropened
+    - switch.garage_sensor
+  control: hidden
+  icon: mdi:garage

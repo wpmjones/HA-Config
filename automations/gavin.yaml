@@ -1,0 +1,36 @@
+- alias: 'Bus Time'
+  id: boys1
+  trigger:
+    - platform: time
+      at: '17:15:00'
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - condition: state
+      entity_id: input_boolean.guest
+      state: 'off'      
+  action:
+    - service: script.speech_engine
+      data:
+        call_bus_time: 1
+- alias: 'Bed Time'
+  id: boys2
+  trigger:
+    - platform: time
+      at: '20:00:00'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.school
+      state: 'on'
+  action:
+    - service: script.speech_engine
+      data:
+        call_bed_time: 1

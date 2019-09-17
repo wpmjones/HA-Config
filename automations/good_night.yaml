@@ -1,0 +1,56 @@
+######################################################################
+##  Good night Routine
+######################################################################
+- alias: Good Night Trigger
+  id: night1
+  trigger:
+    - platform: state
+      entity_id: input_boolean.good_night
+      to: 'on'
+      from: 'off'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.good_night
+    - service: script.lights_off
+    - service: switch.turn_on
+      entity_id: switch.whitenoise
+######################################################################
+##  9 o'clock garage check
+######################################################################
+- alias: Evening Garage Check
+  id: night2
+  trigger:
+    - platform: time
+      at: '21:00:00'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest
+      state: 'off'
+  action:
+    - service: script.speech_engine
+      data:
+        call_no_announcement: 1
+        call_garage_check: 1
+        call_trash_days: 1
+######################################################################
+##  9:30 meds
+######################################################################
+- alias: Jenn Medicine
+  id: night3
+  trigger:
+    - platform: time
+      at: '21:30:00'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: device_tracker.Jennifer
+        state: 'home'
+  action:
+    - service: script.speech_engine
+      data:
+        call_jenn_meds: 1

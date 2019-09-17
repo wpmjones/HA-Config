@@ -3,8 +3,8 @@
   trigger:
     - platform: state
       entity_id:
-        - group.jennifer
-        - group.patrick
+        - device_tracker.jennifer
+        - device_tracker.patrick
       from: 'away'
       to: 'home'
       for: '00:04:00'

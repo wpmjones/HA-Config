@@ -180,47 +180,20 @@ media_player.bedroom_speaker:
 # Groups
 group.my_lights:
   friendly_name: My Lights
-  hidden: true
-  emulated_hue_hidden: true
-group.alarm:
-  friendly_name: Alarm Sensors
-  hidden: false
-group.gavin:
-  order: 0
-group.triggers:
-  order: 1
-group.garage:
-  friendly_name: Garage
-  hidden: true
   emulated_hue_hidden: true
 group.all_scripts:
   friendly_name: All Scripts
-  hidden: true
   emulated_hue_hidden: true
 group.master:
   friendly_name: Master Bedroom
   hidden: false
-  order: 2
 group.other:
   friendly_name: Other Rooms
-  hidden: false
-  order: 3
-group.linksys:
-  hidden: true
 group.jennifer:
+  friendly_name: Jennifer
   hidden: true
 group.patrick:
   friendly_name: Patrick
   hidden: true
-  order: 16
-group.family:
-  hidden: true
 group.tracker:
   friendly_name: Tracker
-  order: 15
-group.upstairs_ac:
-  order: 7
-group.downstairs_ac:
-  order: 8
-groups.home_modes:
-  order: 9

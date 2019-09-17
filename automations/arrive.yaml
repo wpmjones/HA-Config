@@ -3,9 +3,9 @@
   trigger:
     - platform: state
       entity_id:
-        - device_tracker.jennifer
-        - device_tracker.patrick
-      from: 'away'
+        - person.jennifer
+        - person.patrick
+      from: 'not_home'
       to: 'home'
       for: '00:04:00'
   condition:

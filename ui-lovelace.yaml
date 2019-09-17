@@ -172,8 +172,8 @@ views:
           - input_boolean.school
           - device_tracker.patrick
           - device_tracker.jennifer
-          - group.patrick
-          - group.jennifer
+          - person.patrick
+          - person.jennifer
       - type: entities
         entities:
           - input_boolean.led_blue_40

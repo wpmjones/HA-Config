@@ -147,7 +147,7 @@
         rgb_color:
         - 255
         - 0
-        - 150
+        - 100
 - id: LED_on_21
   alias: LED On 9pm
   trigger:
@@ -161,7 +161,7 @@
         rgb_color:
         - 255
         - 0
-        - 100
+        - 0
 - id: LED_on_22
   alias: LED On 10pm
   trigger:

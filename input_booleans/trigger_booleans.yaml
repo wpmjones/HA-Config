@@ -13,13 +13,3 @@ isy_fridgeoff:
   name: Fridge Off
   initial: off
   icon: mdi:fridge
-
-garage:
-  name: Garage Remote
-  initial: off
-  icon: mdi:garage
-
-test:
-  name: Test Trigger
-  initial: off
-  icon: mdi:test-tube

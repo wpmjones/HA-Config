@@ -1,65 +1,6 @@
-# Binary Sensors
-binary_sensor.garage:
-  hidden: true
-binary_sensor.garage_sensor_heartbeat:
-  hidden: true
-binary_sensor.garage_sensor_opened:
-  hidden: true
-binary_sensor.back_door:
-  hidden: true
-binary_sensor.front_door:
-  hidden: true
-binary_sensor.garage_entry_door:
-  hidden: true
-binary_sensor.garage_side_door:
-  hidden: true
-binary_sensor.gavin_window:
-  friendly_name: Gavin's Window
-  hidden: true
-binary_sensor.colin_window:
-  friendly_name: Colin's Window
-  hidden: true
-binary_sensor.guest_room_window:
-  hidden: true
-binary_sensor.master_bedroom_window:
-  hidden: true
-binary_sensor.family_dining_room_window:
-  hidden: true
-binary_sensor.kitchen_window:
-  hidden: true
-
-# Climate
-climate.upstairs_thermostat_heating:
-  hidden: true
-climate.upstairs_thermostat_cooling:
-  hidden: true
-
 # Sensors
-sensor.alarm:
-  hidden: true
 sensor.yr_symbol:
   friendly_name: Weather
-  hidden: true
-sensor.downstairs_temp:
-  friendly_name: Downstairs Temp
-  icon: mdi:thermometer-lines
-sensor.upstairs_temperature:
-  friendly_name: Upstairs Temp
-  icon: mdi:thermometer-lines
-sensor.jennifers_iphone_battery_state:
-  hidden: true
-sensor.jennifers_iphone_battery_level:
-  hidden: true
-sensor.upstairs_cool_2:
-  hidden: true
-sensor.upstairs_heat_2:
-  hidden: true
-sensor.garage:
-  hidden: true
-sensor.fridge_program:
-  hidden: true
-sun.sun:
-  hidden: true
 sensor.multisensor_relative_humidity:
   icon: mdi:water-percent
 sensor.multisensor_luminance:
@@ -69,16 +10,6 @@ sensor.multisensor_luminance:
 input_boolean.isy_fridgeoff:
   emulated_hue_name: Raspberry
   emulated_hue_hidden: false
-input_boolean.garage:
-  emulated_hue_hidden: false
-
-# Zwave
-zwave.stick:
-  hidden: true
-zwave.aeotec_led_01:
-  hidden: true
-zwave.thermostat:
-  hidden: true
 
 # Lights
 light.aeotec_zw098_led_01_level:
@@ -106,20 +37,13 @@ switch.master:
   icon: mdi:lightbulb
 switch.auto_dr:
   friendly_name: ISY Auto DR
-  hidden: true
   emulated_hue_hidden: true
 switch.fridgeclosed:
   friendly_name: Fridge Closed
-  hidden: true
   emulated_hue_hidden: true
 switch.fridgeopened:
   friendly_name: Fridge Opened
-  hidden: true
   emulated_hue_hidden: true
-switch.garage_relay:
-  hidden: true
-switch.garage_sensor:
-  hidden: true
 switch.play_xbox:
   icon: mdi:xbox
 switch.watch_bluray:
@@ -130,44 +54,26 @@ switch.watch_chromecast:
   icon: mdi:google-chrome
 switch.watch_xfinity:
   icon: mdi:television-classic
-switch.vesync_l:
-  hidden: true
-switch.vesync_s:
-  hidden: true
-switch.insteon_002:
-  hidden: true
-switch.xmas_outside:
-  hidden: true
 
 # Scripts
 script.lights_off:
   friendly_name: Lights Off
-  hidden: true
   emulated_hue_hidden: true
 script.bedroom_on:
   friendly_name: Bedroom Lights
-  hidden: true
   emulated_hue_hidden: true
 script.temp_up:
   icon: mdi:arrow-up-thick
 script.temp_down:
   icon: mdi:arrow-down-thick
 script.temp2_up:
-  hidden: false
   icon: mdi:arrow-up-thick
 script.temp2_down:
-  hidden: false
   icon: mdi:arrow-down-thick
 script.gavin_on:
   icon: mdi:eye
 script.gavin_off:
   icon: mdi:eye-off
-script.arm_home:
-  hidden: true
-script.speech_engine:
-  hidden: true
-script.speech_processing:
-  hidden: true
 
 # Logitech Harmony Hub & Media
 remote.harmony_hub:
@@ -184,16 +90,11 @@ group.my_lights:
 group.all_scripts:
   friendly_name: All Scripts
   emulated_hue_hidden: true
-group.master:
-  friendly_name: Master Bedroom
-  hidden: false
 group.other:
   friendly_name: Other Rooms
 group.jennifer:
   friendly_name: Jennifer
-  hidden: true
 group.patrick:
   friendly_name: Patrick
-  hidden: true
 group.tracker:
   friendly_name: Tracker

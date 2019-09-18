@@ -47,8 +47,8 @@ config:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
-  # base_url: ha.mayodev.duckdns.org:8123
-  api_password: !secret http_password
+  base_url: ha.mayodev.duckdns.org:8123
+  # api_password: !secret http_password
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -354,14 +354,9 @@ tts:
 
 # Notification platforms
 notify:
-  - name: slack
-    platform: slack
-    api_key: !secret slack_token
-    default_channel: '#home-assistant'
-    username: 'Home Assistant'
-  - name: pushbullet
-    platform: pushbullet
-    api_key: !secret pushbullet_key
+#  - name: pushbullet
+#    platform: pushbullet
+#    api_key: !secret pushbullet_key
 
 group: !include_dir_merge_named groups
 input_boolean: !include_dir_merge_named input_booleans

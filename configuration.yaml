@@ -179,7 +179,7 @@ person:
 # Enable Z-wave
 zwave:
   usb_path: /dev/ttyACM0
-  network_key: !secret zwwave_key
+  network_key: !secret zwave_key
 
 # Track the sun
 sun:

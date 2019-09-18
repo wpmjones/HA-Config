@@ -1,6 +1,6 @@
-- platform: vesync
-  username: !secret vesync_username
-  password: !secret vesync_password
+#- platform: vesync
+#  username: !secret vesync_username
+#  password: !secret vesync_password
 - platform: template
   switches:
     watch_xfinity:

@@ -1,7 +1,7 @@
 Family:
   entities:
-    - device_tracker.jennifer
-    - device_tracker.patrick
+    - person.jennifer
+    - person.patrick
 
 tracker:
   entities:

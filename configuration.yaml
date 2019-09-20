@@ -76,6 +76,9 @@ history:
 # View all events in a logbook
 logbook:
 
+# system_health
+system_health:
+
 # Logitech Circle component
 #logi_circle:
 #  client_id: !secret logi_client_id
@@ -352,6 +355,7 @@ alarm_control_panel:
 # Text to speech
 tts:
   - platform: google_translate
+    base_url: http://192.168.0.120:8123
     service_name: google_say
 
 # Notification platforms

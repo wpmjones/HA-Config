@@ -1,10 +1,10 @@
-linksys:
+my_network:
   entities:
-    - sensor.tc_quarters_bytes_received
-    - sensor.tc_quarters_bytes_sent
-    - sensor.tc_quarters_kbyte_sec_received
-    - sensor.tc_quarters_kbyte_sec_sent
-    - sensor.tc_quarters_packets_received
-    - sensor.tc_quarters_packets_sent
-    - sensor.tc_quarters_packets_sec_received
-    - sensor.tc_quarters_packets_sec_sent
+    - sensor.sagemcom_f_st_5280_bytes_received
+    - sensor.sagemcom_f_st_5280_bytes_sent
+    - sensor.sagemcom_f_st_5280_kbyte_sec_received
+    - sensor.sagemcom_f_st_5280_kbyte_sec_sent
+    - sensor.sagemcom_f_st_5280_packets_received
+    - sensor.sagemcom_f_st_5280_packets_sec_received
+    - sensor.sagemcom_f_st_5280_packets_sec_sent
+    - sensor.sagemcom_f_st_5280_packets_sent

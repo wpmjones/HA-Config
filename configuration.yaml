@@ -12,24 +12,6 @@ homeassistant:
   # time_zone: America/New_York
   # Customization file
   customize: !include customize.yaml
-  # Customize entities matching a pattern
-  customize_glob:
-    "light.remotel*":
-      hidden: true
-    "binary_sensor.motion*":
-      hidden: true
-    "binary_sensor.fridge*":
-      hidden: true
-    "autom*":
-      hidden: true
-    "light.therm*":
-      hidden: true
-    "switch.buzz*":
-      hidden: true
-    "media_player*":
-      hidden: true
-    "sensor.tc_*":
-      hidden: true
 
 # Add logging levels - debug is the default
 logger:
@@ -65,6 +47,7 @@ discovery:
 # Set up Emulated Philips Hue Bridge
 emulated_hue:
   host_ip: 192.168.1.120
+  listen_port: 80
   expose_by_default: false
 
 # Amazon Echo Integration
@@ -206,50 +189,16 @@ climate:
 sensor:
   # Weather prediction
   - platform: yr
-  # Command line sensors for ISY
-  # - platform: command_line
-  #   name: Downstairs Temp
-  #   command: '/usr/bin/curl --user admin:admin "http://192.168.1.15:81/rest/nodes/14%2029%20E4%201/ST" 2>&1 | grep -oPm1 "(?<=formatted=\")[0-9]+"'
-  #   unit_of_measurement: °F
-  #   scan_interval: 60
-  # - platform: command_line
-  #   name: Downstairs Heat
-  #   command: '/usr/bin/curl --user admin:admin "http://192.168.1.15:81/rest/nodes/14%2029%20E4%201/CLISPH" 2>&1 | grep -oPm1 "(?<=formatted=\")[0-9]+"'
-  #   unit_of_measurement: °F
-  #   scan_interval: 15
-  # - platform: command_line
-  #   name: Downstairs Cool
-  #   command: '/usr/bin/curl --user admin:admin "http://192.168.1.15:81/rest/nodes/14%2029%20E4%201/CLISPC" 2>&1 | grep -oPm1 "(?<=formatted=\")[0-9]+"'
-  #   unit_of_measurement: °F
-  #   scan_interval: 15
   - platform: command_line
     name: Alarm
     command: '/usr/bin/curl --user admin:admin "http://192.168.1.15:81/rest/programs/000C" 2>&1 | grep -oPm1 "(?<=enabled=\")[true|false]+"'
     scan_interval: 5
-  # - platform: command_line
-  #   name: garage
-  #   command: '/usr/bin/curl --user admin:admin "http://192.168.1.15:81/rest/nodes/32%2051%2036%201/ST" 2>&1 | grep -oPm1 "(?<=formatted=\")[On|Off]+"'
-  #   scan_interval: 5
   - platform: command_line
     name: Fridge Program
     command: '/usr/bin/curl --user admin:admin "http://192.168.1.15:81/rest/vars/get/2/5" 2>&1 | grep -oPm1 "(?<=<val>)[^<]+"'
     scan_interval: 5
   - platform: template
     sensors:
-  #     garage_door:
-  #       friendly_name: 'Garage'
-  #       value_template: >-
-  #         {% if is_state('sensor.garage', 'On') %}
-  #           Open
-  #         {% else %}
-  #           Closed
-  #         {% endif %}
-  #       icon_template: >-
-  #         {% if is_state('sensor.garage', 'On') %}
-  #           mdi:garage-open
-  #         {% else %}
-  #           mdi:garage
-  #         {% endif %}
       fridge:
         friendly_name: 'Fridge Alarm'
         value_template: >-
@@ -300,57 +249,6 @@ remote:
     name: Harmony Hub
     host: 192.168.1.133
     activity: 20409204
-
-# Home alarm system
-konnected:
-  access_token: jonesFamily2003
-  api_host: http://192.168.1.175:8123
-  devices:
-    - id: 807d3a663600
-      binary_sensors:
-        - zone: 1
-          type: window
-          name: 'Kitchen Window'
-        - zone: 2
-          type: window
-          name: 'Family Dining Room Window'
-        - zone: 3
-          type: window
-          name: 'Master Bedroom Window'
-        - zone: 4
-          type: window
-          name: 'Guest Room Window'
-        - zone: 5
-          type: window
-          name: 'Colin Window'
-        - zone: 6
-          type: window
-          name: 'Gavin Window'
-    - id: 84f3eb18561a
-      binary_sensors:
-        - zone: 3
-          type: door
-          name: 'Garage Entry Door'
-        - zone: 4
-          type: door
-          name: 'Back Door'
-        - zone: 5
-          type: door
-          name: 'Front Door'
-        - zone: 6
-          type: door
-          name: 'Garage Side Door'
-
-# Alarm Control Panel for Konnected
-alarm_control_panel:
-  - platform: manual
-    name: Home Alarm
-    code: !secret alarm_code
-    pending_time: 30
-    delay_time: 20
-    armed_home:
-      pending_time: 0
-      delay_time: 0
 
 # Text to speech
 tts:

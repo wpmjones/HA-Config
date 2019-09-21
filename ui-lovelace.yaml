@@ -190,15 +190,21 @@ views:
     cards:
       - type: entities
         entities:
-          - entity: sensor.sagemcom_f_st_5280_kbyte_sec_sent
+          - type: sensor
+            entity: sensor.sagemcom_f_st_5280_kbyte_sec_sent
             name: KB Sent/sec
-          - entity: sensor.sagemcom_f_st_5280_kbyte_sec_received
+          - type: sensor
+            entity: sensor.sagemcom_f_st_5280_kbyte_sec_received
             name: KB Received/sec
-          - entity: sensor.sagemcom_f_st_5280_packets_sent
+          - type: sensor
+            entity: sensor.sagemcom_f_st_5280_packets_sent
             name: Packets Sent
-          - entity: sensor.sagemcom_f_st_5280_packets_received
+          - type: sensor
+            entity: sensor.sagemcom_f_st_5280_packets_received
             name: Packets Received
-          - entity: sensor.sagemcom_f_st_5280_packets_sec_sent
+          - type: sensor
+            entity: sensor.sagemcom_f_st_5280_packets_sec_sent
             name: Packets Sent/sec
-          - entity: sensor.sagemcom_f_st_5280_packets_sec_received
+          - type: sensor
+            entity: sensor.sagemcom_f_st_5280_packets_sec_received
             name: Packets Received/sec

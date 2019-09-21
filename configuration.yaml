@@ -159,6 +159,12 @@ device_tracker:
       - 192.168.1.92
       - 192.168.1.120
       - 192.168.1.15
+  - platform: automatic
+    client_id: !secret automatic_id
+    secret: !secret automatic_secret
+    devices:
+      - 2018 Chrysler Pacifica
+      - 2014 Dodge Caravan
 
 # Enable Person
 person:

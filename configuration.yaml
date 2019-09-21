@@ -167,7 +167,7 @@ device_tracker:
     secret: !secret automatic_secret
     devices:
       - 2018 Chrysler Pacifica
-      - 2014 Dodge Caravan
+      - 2014 Dodge Grand Caravan
 
 # Enable Person
 person:

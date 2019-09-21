@@ -29,7 +29,7 @@ config:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
-  base_url: ha.mayodev.duckdns.org:8123
+  base_url: 192.168.1.120:8123
   # api_password: !secret http_password
 
 # Checks for available updates
@@ -145,6 +145,9 @@ zone:
   - name: Thurgood Marshall
     latitude: 27.749264
     longitude: -82.686692
+  - name: Tbirds Practice
+    latitude: 27.842464
+    longitude: -82.718318
 
 # Setup device trackers
 device_tracker:

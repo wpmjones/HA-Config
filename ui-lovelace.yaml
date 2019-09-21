@@ -199,6 +199,6 @@ views:
           - entity: sensor.sagemcom_f_st_5280_packets_received
             name: Packets Received
           - entity: sensor.sagemcom_f_st_5280_packets_sec_sent
-              name: Packets Sent/sec
+            name: Packets Sent/sec
           - entity: sensor.sagemcom_f_st_5280_packets_sec_received
-              name: Packets Received/sec
+            name: Packets Received/sec

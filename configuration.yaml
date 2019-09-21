@@ -51,7 +51,7 @@ emulated_hue:
   expose_by_default: false
 
 # Amazon Echo Integration
-alexa:
+# alexa:
 
 # Enables support for tracking state changes over time
 history:
@@ -255,12 +255,6 @@ tts:
   - platform: google_translate
     base_url: http://192.168.0.120:8123
     service_name: google_say
-
-# Notification platforms
-notify:
-#  - name: pushbullet
-#    platform: pushbullet
-#    api_key: !secret pushbullet_key
 
 group: !include_dir_merge_named groups
 input_boolean: !include_dir_merge_named input_booleans

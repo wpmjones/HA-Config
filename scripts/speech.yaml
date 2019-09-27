@@ -35,7 +35,7 @@ speech_engine:
           {% macro bus_time() -%}
             {{ [
               'At the tone, it will be time to pick up Gavin.  Beep!',
-              'Its 5:30.  Time to go meet the bus.',
+              'Its 4:45.  Time to go meet the bus.',
               'Oh!  Look at the time!  Put your shoes on and chase that bus!'
             ]|random }}
           {% endmacro -%}

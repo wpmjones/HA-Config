@@ -2,7 +2,7 @@
   id: boys1
   trigger:
     - platform: time
-      at: '17:15:00'
+      at: '16:45:00'
   condition:
     - condition: time
       weekday:
@@ -34,3 +34,5 @@
     - service: script.speech_engine
       data:
         call_bed_time: 1
+# new auto send command to ISY to beep if Freezer opened
+# sensor.open_close_3
